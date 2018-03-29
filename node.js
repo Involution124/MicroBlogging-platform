@@ -1,11 +1,13 @@
 var http = require("http");
-var bp = require("body-parser");
 var path = require("path");
 var exphbs = require("express-handlebars");
 
 
 var express = require("express");
 var app = express();
+
+var database = require("./modules/mongo.js");
+
 
 var server = http.createServer(app);
 
@@ -27,9 +29,10 @@ app.engine("handlebars", exphbs({
     })
 ); 
 
-app.use('/css', express.static(path.join(__dirname, "css")));
-app.use('/js', express.static(path.join(__dirname, "js")));
-app.use('/images', express.static(path.join(__dirname, "images")));
+app.use('/css', express.static(path.join(__dirname,"public", "css")));
+app.use('/js', express.static(path.join(__dirname,"public", "js")));
+app.use('/images', express.static(path.join(__dirname,"public", "images")));
+app.use('/fonts', express.static(path.join(__dirname,"public", "fonts")));
         
 
 
@@ -40,7 +43,7 @@ if(process.argv.length!=3){
 
 app.use("/login", loginRoute);
 
-app.use(["/home", "/"], homeRoute);
+app.use(["/home","/"], homeRoute);
 
 
 server.listen(process.argv[2], function(){

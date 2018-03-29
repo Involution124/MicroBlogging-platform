@@ -1,0 +1,28 @@
+{{> header }}
+
+<div class="loginboxContainer">
+    <div class="loginbox">
+        <div class="loginboxHeader">
+            <i class="fas fa-address-card"></i> Log in 
+        </div>
+        <div class="loginboxBody">
+            <form method="post" action="/login" class="loginForm">
+                {{#if incomplete}}
+                <div class="loginboxErr">
+                    Unable to login, username or password not set. Please try again.
+                </div><br>
+                {{/if}}
+                {{#if login}}
+                <div class="loginboxErr">
+                    Invalid username or password. Please try again.
+                </div><br>
+                {{/if}}
+                <i class="fas fa-user"></i>Username<br>
+                <input type="text" name="username" id="username" placeholder="username" class="loginboxForm"><br>
+                <i class="fas fa-unlock"></i> Password<br>
+                <input type="password" name="password" id="password" placeholder="password" class="loginboxForm"><br>      
+                <input type="submit" value="submit" class="loginboxSubmit">
+            </form>
+        </div>
+    </div>
+</div>
